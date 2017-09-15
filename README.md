@@ -39,8 +39,8 @@ remote command execution.
 
 Usage: `./theta-tunnel.sh <user name> <worker id> <port>`
 
-The script will tunnel the local port <port> through
-to a connection on Theta compute node nid<worker id>:<port>
+The script will tunnel the local port `<port>` through
+to a connection on Theta compute node `nid<worker id>:<port>`
 allowing you to connect to a remote running vis client.
 You should enter the worker id without any leading zeros.
 
