@@ -14,11 +14,13 @@ commands to setup the connection are:
 1. First tunnel into any theta login node.
 ```ssh -L port:localhost:port user@theta.alcf.anl.gov```
 
-1. Next tunnel into any mom node. The mom node # is not important, as they can see all compute nodes on the network.
+1. Next tunnel into any mom node. The mom node # is not important, as
+they can see all compute nodes on the network.
 ```ssh -L port:localhost:port thetamom#```
 
-1. On the mom node run `socat` to bridge between the ssh tunnel and the TCP socket (or whatever socket you open) running on the compute node.
-```socat TCP-LISTEN:port TCP:nid0####:port```
+1. On the mom node run `socat` to bridge between the ssh tunnel and the
+TCP socket (or whatever socket you open) running on the compute node.
+```socat TCP-LISTEN:port TCP:nid#####:port```
 
 You can now connect your client running on your desktop to `localhost:port`
 and it will tunnel through to the server running on the compute node.
@@ -26,8 +28,8 @@ The network connections look like so:
 
 ```text
       ssh -L X:localhost:X \            ssh -L X:localhost:X \       socat TCP-LISTEN:X \
-         theta.alcf.anl.gov                    thetamom1                   TCP:nid0####:X
-Desk ---------------------------> Login ----------------------> mom1 --------------------> nid0####
+         theta.alcf.anl.gov                    thetamom1                   TCP:nid#####:X
+Desk ---------------------------> Login ----------------------> mom1 --------------------> nid#####
 ```
 
 The script provided in this repo executes this sequence of commands using SSH
@@ -38,6 +40,7 @@ remote command execution.
 Usage: `./theta-tunnel.sh <user name> <worker id> <port>`
 
 The script will tunnel the local port <port> through
-to a connection on Theta compute node nid0<worker id>:<port>
+to a connection on Theta compute node nid<worker id>:<port>
 allowing you to connect to a remote running vis client.
+You should enter the worker id without any leading zeros.
 
