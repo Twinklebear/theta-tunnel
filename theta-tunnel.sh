@@ -15,7 +15,7 @@ PORT=$3
 
 ssh -L $PORT:localhost:$PORT ${USER}@theta.alcf.anl.gov <<-1
 	echo "Opening tunnel to mom node ..."
-	ssh -L "$PORT":localhost:"$PORT" thetamom1 <<-2
+	ssh -L $PORT:localhost:$PORT thetamom1 <<-2
 		echo "Opening socat to nid${WORKER_ID}:${PORT} ..."
 		socat TCP-LISTEN:$PORT,reuseaddr TCP:nid${WORKER_ID}:$PORT
 	2
