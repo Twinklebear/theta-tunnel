@@ -39,6 +39,10 @@ remote command execution.
 
 Usage: `./theta-tunnel.sh <user name> <worker id> <port>`
 
+# Enabling SSH into Compute Nodes
+
+More recently I've learned you can enable SSH onto the compute nodes by passing `--attrs=enable_ssh=1` when you run `qsub`    
+
 The script will tunnel the local port `<port>` through
 to a connection on Theta compute node `nid<worker id>:<port>`
 allowing you to connect to a remote running vis client.
